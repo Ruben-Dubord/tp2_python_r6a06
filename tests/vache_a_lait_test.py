@@ -35,9 +35,11 @@ def test_should_increase_lait_total_produit_given_positive_panse_when_ruminer():
 
     # Act
     vache.ruminer()
+    actual = vache.lait_total_produit
+    expected = VacheALait.RENDEMENT_LAIT * 10.0
 
     # Assert (1 assertion métier)
-    assert vache.lait_total_produit == pytest.approx(VacheALait.RENDEMENT_LAIT * 10.0)
+    assert actual == pytest.approx(expected)
 
 
 def test_should_return_lait_produced_given_positive_panse_when_ruminer():
@@ -46,10 +48,12 @@ def test_should_return_lait_produced_given_positive_panse_when_ruminer():
     vache.brouter(10.0)
 
     # Act
-    lait = vache.ruminer()
+    vache.ruminer()
+    actual = vache.lait_total_produit
+    expected = VacheALait.RENDEMENT_LAIT * 10.0
 
     # Assert (1 assertion métier)
-    assert lait == pytest.approx(VacheALait.RENDEMENT_LAIT * 10.0)
+    assert actual == pytest.approx(expected)
 
 
 def test_should_raise_invalid_vache_exception_given_empty_panse_when_ruminer():
