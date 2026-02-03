@@ -1,3 +1,4 @@
+import vaches.exceptions.InvalidVacheException
 class Vache:
 
     AGE_MAX = 25
@@ -37,3 +38,11 @@ class Vache:
 
     def vieillir(self):
         self._age += 1
+
+    def brouter(self, quantite = 1.0, nourriture = None):
+        if quantite <= 0:
+            raise vaches.exceptions.InvalidVacheException
+        else:
+            self._panse += quantite
+            if self._panse > self.PANSE_MAX:
+                raise vaches.exceptions.InvalidVacheException
