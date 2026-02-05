@@ -1,4 +1,4 @@
-import vaches.exceptions.InvalidVacheException
+from vaches.exceptions import InvalidVacheException
 class Vache:
 
     AGE_MAX = 25
@@ -10,12 +10,15 @@ class Vache:
     NEXT_ID = 1
 
     def __init__(self, petitNom, poids, age):
-        self._petitNom = petitNom
-        self._age = age
-        self._poids = poids
-        self._panse = self.POIDS_MIN_PANSE
-        self._id = self.NEXT_ID
-        self.NEXT_ID += 1
+        if petitNom is None or petitNom.strip() == '':
+            raise InvalidVacheException
+        else:
+            self._petitNom = petitNom
+            self._age = age
+            self._poids = poids
+            self._panse = self.POIDS_MIN_PANSE
+            self._id = self.NEXT_ID
+            self.NEXT_ID += 1
 
     @property
     def petitNom(self) -> None:
@@ -37,12 +40,14 @@ class Vache:
         return ""
 
     def vieillir(self):
+        if self._age >= self.AGE_MAX:
+            raise InvalidVacheException
         self._age += 1
 
     def brouter(self, quantite = 1.0, nourriture = None):
         if quantite <= 0:
-            raise vaches.exceptions.InvalidVacheException
+            raise InvalidVacheException
         else:
             self._panse += quantite
             if self._panse > self.PANSE_MAX:
-                raise vaches.exceptions.InvalidVacheException
+                raise InvalidVacheException
