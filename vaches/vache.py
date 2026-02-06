@@ -69,7 +69,7 @@ class Vache:
     def _calculer_lait(self, panse_avant):
         return 0.0
 
-    def _stocker_lait(self, lait = None):
+    def _stocker_lait(self, lait: float):
         return
 
     def _post_rumination(self, panse_avant, lait = None):
@@ -83,8 +83,8 @@ class Vache:
         gain = self.RENDEMENT_RUMINATION * panse_avant
         self._poids += gain
 
-        self._calculer_lait(panse_avant)
-        self._stocker_lait()
+        lait = self._calculer_lait(panse_avant)
+        self._stocker_lait(lait)
 
         self._panse = self.POIDS_PANSE_VIDE
 
