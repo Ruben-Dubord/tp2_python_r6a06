@@ -10,23 +10,20 @@ class Vache:
     COEFFICIENT_NUTRITIONNEL = None
     NEXT_ID = 1
 
-    def __init__(self, petitNom, poids, age=AGE_NAISSANCE):
-        if petitNom is None or petitNom.strip() == '':
+    def __init__(self, petitNom, poids):
+        if petitNom is None or petitNom.strip() == "":
             raise InvalidVacheException
 
         if poids is None or poids < self.POIDS_PANSE_VIDE:
             raise InvalidVacheException
 
-        self._age = age
-        if not (self.AGE_NAISSANCE <= self._age <= self.AGE_MAX):
-            raise InvalidVacheException
+        self._petitNom = petitNom
+        self._poids = poids
+        self._panse = self.POIDS_PANSE_VIDE
+        self._age = self.AGE_NAISSANCE
+        self._id = self.NEXT_ID
+        Vache.NEXT_ID += 1
 
-        else:
-            self._petitNom = petitNom
-            self._poids = poids
-            self._panse = self.POIDS_PANSE_VIDE
-            self._id = self.NEXT_ID
-            self.NEXT_ID += 1
 
     @property
     def petitNom(self) -> None:
