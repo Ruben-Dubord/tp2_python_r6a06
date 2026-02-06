@@ -165,7 +165,7 @@ def test_should_increase_age_by_one_given_age_below_age_max_when_vieillir():
     vache.vieillir()
 
     # Assert (1 assertion métier)
-    assert vache.age == 6
+    assert vache.age == 1
 
 
 def test_should_raise_invalid_vache_exception_given_age_max_when_vieillir():

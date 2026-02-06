@@ -63,3 +63,32 @@ class Vache:
             raise InvalidVacheException
 
         self._panse += quantite
+
+    def valider_rumination_possible(self):
+        if self._panse <= self.POIDS_PANSE_VIDE:
+            raise InvalidVacheException
+        return True
+
+    def _calculer_lait(self, panse_avant):
+        return 0.0
+
+    def _stocker_lait(self, lait = None):
+        return
+
+    def _post_rumination(self, panse_avant, lait = None):
+        return
+
+    def ruminer(self):
+
+        self.valider_rumination_possible()
+
+        panse_avant = self._panse
+        gain = self.RENDEMENT_RUMINATION * panse_avant
+        self._poids += gain
+
+        self._calculer_lait(panse_avant)
+        self._stocker_lait()
+
+        self._panse = self.POIDS_PANSE_VIDE
+
+        self._post_rumination(panse_avant)
